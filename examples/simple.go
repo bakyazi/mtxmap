@@ -13,7 +13,7 @@ var db = map[string]int{
 	"key2": 0,
 }
 
-func useMap(key string, id int) {
+func incrementKey(key string, id int) {
 	unlock := mmap.Lock(key)
 	defer unlock()
 	log.Printf("thread_id(%d) acquire mutex of %s key\n", id, key)
@@ -28,7 +28,7 @@ func main() {
 	for i := 1; i < 5; i++ {
 		wg.Add(1)
 		go func(x int) {
-			useMap("key1", x)
+			incrementKey("key1", x)
 			wg.Done()
 		}(i)
 	}
@@ -36,7 +36,7 @@ func main() {
 	for i := 1; i < 5; i++ {
 		wg.Add(1)
 		go func(x int) {
-			useMap("key2", x)
+			incrementKey("key2", x)
 			wg.Done()
 		}(i)
 	}
