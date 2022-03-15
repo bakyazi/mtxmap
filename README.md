@@ -39,7 +39,7 @@ func main() {
 		}(i)
 	}
 
-	for i := 1; i < 5; i++ {
+	for i := 10; i < 15; i++ {
 		wg.Add(1)
 		go func(x int) {
 			incrementKey("key2", x)
@@ -55,31 +55,31 @@ func main() {
 	log.Printf("value of key %s is %d", "key1", db["key1"])
 	log.Printf("value of key %s is %d", "key2", db["key2"])
 }
-
 ```
 
 output
 
 ```
-2022/03/15 21:02:48 thread_id(4) acquire mutex of key2 key
-2022/03/15 21:02:48 thread_id(3) acquire mutex of key1 key
-2022/03/15 21:02:49 thread_id(4) releasing mutex of key2 key
-2022/03/15 21:02:49 thread_id(2) acquire mutex of key2 key
-2022/03/15 21:02:49 thread_id(3) releasing mutex of key1 key
-2022/03/15 21:02:49 thread_id(1) acquire mutex of key1 key
-2022/03/15 21:02:50 thread_id(2) releasing mutex of key2 key
-2022/03/15 21:02:50 thread_id(3) acquire mutex of key2 key
-2022/03/15 21:02:50 thread_id(1) releasing mutex of key1 key
-2022/03/15 21:02:50 thread_id(2) acquire mutex of key1 key
-2022/03/15 21:02:51 thread_id(3) releasing mutex of key2 key
-2022/03/15 21:02:51 thread_id(1) acquire mutex of key2 key
-2022/03/15 21:02:51 thread_id(2) releasing mutex of key1 key
-2022/03/15 21:02:51 thread_id(4) acquire mutex of key1 key
-2022/03/15 21:02:52 thread_id(1) releasing mutex of key2 key
-2022/03/15 21:02:52 thread_id(4) releasing mutex of key1 key
-2022/03/15 21:02:52 length of mtxmap is 2
-2022/03/15 21:03:02 length of mtxmap is 0
-2022/03/15 21:03:02 value of key key1 is 4
-2022/03/15 21:03:02 value of key key2 is 4
-
+2022/03/15 21:08:09 thread_id(14) acquire mutex of key2 key
+2022/03/15 21:08:09 thread_id(4) acquire mutex of key1 key
+2022/03/15 21:08:10 thread_id(14) releasing mutex of key2 key
+2022/03/15 21:08:10 thread_id(4) releasing mutex of key1 key
+2022/03/15 21:08:10 thread_id(11) acquire mutex of key2 key
+2022/03/15 21:08:10 thread_id(1) acquire mutex of key1 key
+2022/03/15 21:08:11 thread_id(1) releasing mutex of key1 key
+2022/03/15 21:08:11 thread_id(11) releasing mutex of key2 key
+2022/03/15 21:08:11 thread_id(10) acquire mutex of key2 key
+2022/03/15 21:08:11 thread_id(2) acquire mutex of key1 key
+2022/03/15 21:08:12 thread_id(2) releasing mutex of key1 key
+2022/03/15 21:08:12 thread_id(10) releasing mutex of key2 key
+2022/03/15 21:08:12 thread_id(3) acquire mutex of key1 key
+2022/03/15 21:08:12 thread_id(12) acquire mutex of key2 key
+2022/03/15 21:08:13 thread_id(12) releasing mutex of key2 key
+2022/03/15 21:08:13 thread_id(3) releasing mutex of key1 key
+2022/03/15 21:08:13 thread_id(13) acquire mutex of key2 key
+2022/03/15 21:08:14 thread_id(13) releasing mutex of key2 key
+2022/03/15 21:08:14 length of mtxmap is 2
+2022/03/15 21:08:24 length of mtxmap is 0
+2022/03/15 21:08:24 value of key key1 is 4
+2022/03/15 21:08:24 value of key key2 is 5
 ```

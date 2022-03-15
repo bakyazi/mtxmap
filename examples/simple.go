@@ -33,7 +33,7 @@ func main() {
 		}(i)
 	}
 
-	for i := 1; i < 5; i++ {
+	for i := 10; i < 15; i++ {
 		wg.Add(1)
 		go func(x int) {
 			incrementKey("key2", x)
