@@ -21,7 +21,6 @@ func useMap(key string, id int) {
 	db[key] += 1
 	time.Sleep(time.Second * 1)
 	log.Printf("%d releasing %s key\n", id, key)
-
 }
 
 func TestMtxmap(t *testing.T) {
