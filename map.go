@@ -28,7 +28,6 @@ func NewMutexMap(ttl time.Duration, cleanInterval time.Duration) *MutexMap {
 		ttl:           ttl,
 		cleanInterval: cleanInterval,
 	}
-	m.ctx, m.cancelFunc = context.WithCancel(context.Background())
 	m.Start()
 
 	return m
