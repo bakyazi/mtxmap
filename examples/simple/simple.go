@@ -1,8 +1,3 @@
-# mtxmap
-key based mutex map with ttl
-
-## example
-```go
 package main
 
 import (
@@ -79,4 +74,3 @@ func main() {
 2022/03/16 15:42:04 length of mtxmap is 0
 2022/03/16 15:42:04 current state of db: map[key1:4 key2:5]
 */
-```
