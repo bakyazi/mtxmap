@@ -24,7 +24,7 @@ func useMap(key string, id int) {
 }
 
 func TestMtxmap(t *testing.T) {
-	mmap = mtxmap.NewMutexMap(time.Second * 5)
+	mmap = mtxmap.NewMutexMap(time.Second*5, time.Second)
 	wg := sync.WaitGroup{}
 	for i := 1; i < 5; i++ {
 		wg.Add(1)
