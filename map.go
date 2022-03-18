@@ -60,15 +60,17 @@ func (m *MutexMap) Unlock(key interface{}) {
 	}
 }
 
+// Len returns length of key set of MutexMap
 func (m *MutexMap) Len() int {
 	return m.size
 }
 
+// SetTTL sets TTL parameter of MutexMap
 func (m *MutexMap) SetTTL(t time.Duration) {
 	m.ttl = t
 }
 
-// Start starts cleaner goroutine
+// Start starts cleaner goroutine of MutexMap
 func (m *MutexMap) Start() {
 	if isMutexLocked(m.mutex) {
 		log.Println("<mtxmap> mutex map already started!")
@@ -103,6 +105,7 @@ func (m *MutexMap) Start() {
 	}()
 }
 
+// Stop stops the cleaner goroutine of MutexMap
 func (m *MutexMap) Stop() {
 	if m.cancelFunc == nil {
 		return
@@ -112,14 +115,19 @@ func (m *MutexMap) Stop() {
 	m.cancelFunc = nil
 }
 
+// increment add one to size of MutexMap instance
+// it is called when new key is inserted into MutexMap
 func (m *MutexMap) increment() {
 	m.size++
 }
 
+// decrement subtract one from size of MutexMap instance
+// it is called when a key is deleted from MutexMap
 func (m *MutexMap) decrement() {
 	m.size--
 }
 
+// isMutexLocked check whether mutex of MutexMap is locked or not
 func isMutexLocked(m *sync.Mutex) bool {
 	state := reflect.ValueOf(m).Elem().FieldByName("state")
 	return state.Int()&1 == 1
